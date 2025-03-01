@@ -27,7 +27,7 @@ function Signup() {
         setServerError("");
 
         try {
-            const response = await axios.post("http://localhost:1337/api/user/signup", data);
+            const response = await axios.post("api/user/signup", data);
             localStorage.setItem("token", response.data.jwt);
             localStorage.setItem("user", JSON.stringify(response.data.user));
 
