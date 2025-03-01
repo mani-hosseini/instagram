@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import axios from "axios";
+import {client} from "../../../lib/axios.js";
 
 const schema = yup.object().shape({
     username: yup.string().required("Username is required"),
