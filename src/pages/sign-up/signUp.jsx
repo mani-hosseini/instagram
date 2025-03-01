@@ -48,7 +48,6 @@ function Signup() {
                         {...register("password")}
                     />
                     {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
-
                     <button
                         type="submit"
                         className="p-3 rounded-lg text-white bg-blue-500 hover:bg-blue-600 transition duration-200"
