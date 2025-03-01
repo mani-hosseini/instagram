@@ -27,11 +27,11 @@ function Signup() {
         setServerError("");
 
         try {
-            const response = await axios.post("api/user/signup", data);
+            const response = await client.post("/api/user/signup", data);
             localStorage.setItem("token", response.data.jwt);
             localStorage.setItem("user", JSON.stringify(response.data.user));
 
-            navigate("/dashboard");
+            navigate("/dashboard"); 
         } catch (error) {
             setServerError(error.response?.data?.message || "Something went wrong");
         }
