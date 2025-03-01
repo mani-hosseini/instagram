@@ -1,6 +1,9 @@
-import {useForm} from "react-hook-form";
-import {yupResolver} from "@hookform/resolvers/yup";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import axios from "axios";
 
 const schema = yup.object().shape({
     username: yup.string().required("Username is required"),
@@ -9,14 +12,30 @@ const schema = yup.object().shape({
 });
 
 function Signup() {
+    const navigate = useNavigate();
+    const [serverError, setServerError] = useState("");
+
     const {
         register,
         handleSubmit,
-        formState: {errors},
+        formState: { errors },
     } = useForm({
         resolver: yupResolver(schema),
     });
 
+    const onSubmit = async (data) => {
+        setServerError("");
+
+        try {
+            const response = await axios.post("http://localhost:1337/api/user/signup", data);
+            localStorage.setItem("token", response.data.jwt);
+            localStorage.setItem("user", JSON.stringify(response.data.user));
+
+            navigate("/dashboard");
+        } catch (error) {
+            setServerError(error.response?.data?.message || "Something went wrong");
+        }
+    };
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-50">
@@ -49,8 +68,6 @@ function Signup() {
                         {...register("password")}
                     />
                     {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
-
-                    {serverError && <p className="text-red-500 text-sm mt-2">{serverError}</p>}
 
                     <button
                         type="submit"
