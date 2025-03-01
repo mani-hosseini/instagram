@@ -1,7 +1,6 @@
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
 const schema = yup.object().shape({
     username: yup.string().required("Username is required"),
     email: yup.string().email("Invalid email").required("Email is required"),
@@ -17,7 +16,6 @@ function Signup() {
         resolver: yupResolver(schema),
     });
 
-
     return (
         <div className="flex items-center  justify-center min-h-screen bg-gray-50">
             <div className="bg-white p-8 border rounded-lg w-96 shadow-lg">
@@ -30,6 +28,7 @@ function Signup() {
                         className="p-3 border rounded-lg bg-gray-100 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none"
                         {...register("username")}
                     />
+
                     {errors.username && <p className="text-red-500 text-sm mt-1">{errors.username.message}</p>}
 
                     <input
@@ -49,8 +48,6 @@ function Signup() {
                         {...register("password")}
                     />
                     {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
-
-                    {serverError && <p className="text-red-500 text-sm mt-2">{serverError}</p>}
 
                     <button
                         type="submit"
