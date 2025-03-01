@@ -1,10 +1,15 @@
+import image1 from "../../assets/insta logo.png";
+
 function Signup() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50">
       <div className="bg-white p-8 border rounded-lg w-96 shadow-lg">
-        <h2 className="text-center text-3xl font-semibold text-gray-800 mb-6">Instagram</h2>
-        
         <form className="flex flex-col space-y-4">
+          <img 
+            src={image1} 
+            alt="Instagram Logo"
+            className="w-[255px] h-[87px] object-contain mx-auto mb-4" 
+          /> 
           <input
             type="text"
             placeholder="Username"
@@ -27,7 +32,7 @@ function Signup() {
             Sign Up
           </button>
         </form>
-        
+
         <div className="text-center mt-4 text-sm text-gray-600">
           Already have an account?{" "}
           <a href="#" className="text-blue-500 hover:underline">
