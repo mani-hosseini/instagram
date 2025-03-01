@@ -19,7 +19,7 @@ function Signup() {
 
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-50">
+        <div className="flex items-center  justify-center min-h-screen bg-gray-50">
             <div className="bg-white p-8 border rounded-lg w-96 shadow-lg">
                 <h2 className="text-center text-3xl font-semibold text-gray-800 mb-6">Instagram</h2>
                 <form className="flex flex-col space-y-4" onSubmit={handleSubmit(onSubmit)}>
