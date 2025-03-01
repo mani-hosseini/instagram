@@ -8,7 +8,7 @@ function Signup() {
           <img 
             src={image1} 
             alt="Instagram Logo"
-            className="w-[255px] h-[87px] object-contain mx-auto mb-4" 
+            className="w-[256px] h-[87px] object-contain mx-auto mb-4" 
           /> 
           <input
             type="text"
