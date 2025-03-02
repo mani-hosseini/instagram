@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {useForm} from "react-hook-form";
+import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import {client} from "../../../lib/axios.js";
 
@@ -18,7 +18,7 @@ function Signup() {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: {errors},
     } = useForm({
         resolver: yupResolver(schema),
     });
@@ -28,19 +28,20 @@ function Signup() {
 
         try {
             const response = await client.post("/api/user/signup", data);
-            localStorage.setItem("token", response.data.jwt);
-            localStorage.setItem("user", JSON.stringify(response.data.user));
-
-            navigate("/dashboard"); 
+            navigate("/login");
         } catch (error) {
-            setServerError(error.response?.data?.message || "Something went wrong");
+            if (error.response?.data?.message.includes("E11000")) {
+                setServerError("This username is already taken. Please choose another one.");
+            } else {
+                setServerError(error.response?.data?.message || "Something went wrong");
+            }
         }
     };
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-50">
             <div className="bg-white p-8 border rounded-lg w-96 shadow-lg">
-                <h2 className="text-center text-3xl font-semibold text-gray-800 mb-6">Instagram</h2>
+                <h2 className="text-center text-3xl font-semibold text-gray-800 mb-6">Sign Up</h2>
                 <form className="flex flex-col space-y-4" onSubmit={handleSubmit(onSubmit)}>
                     <input
                         type="text"
@@ -68,6 +69,8 @@ function Signup() {
                         {...register("password")}
                     />
                     {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
+
+                    {serverError && <p className="text-red-500 text-sm mt-1">{serverError}</p>}
 
                     <button
                         type="submit"
