@@ -15,6 +15,8 @@ function App() {
                 <Route path="search" element={<Search/>}/>
                 <Route path="create" element={<Creat/>}/>
                 <Route path="profile" element={<Profile/>}/>
+                <Route path="signup" element={<Signup/>}/>
+                <Route path="login" element={<Login/>}/>
             </Route>
         </Routes>
     );
