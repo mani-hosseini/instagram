@@ -4,7 +4,7 @@ const Layout = () => {
   return (
     <div className="flex h-screen">
      
-      <div className="w-56 p-6 shadow-md fixed h-full bg-white">
+      <div className="w-64 p-6 shadow-md fixed h-full bg-white">
         <div className="flex items-center space-x-2 mb-6">
           <span className="text-lg font-bold text-gray-700">Instagram</span>
         </div>
